@@ -1,0 +1,267 @@
+\chapter{Детали реализации и сравнение с аналогами}
+
+В данной главе подробно рассмотрены детали реализации динамических Rake-Compress деревьев, а также приведен сравнительный анализ деревьев Rake-Compress и Link-Cut.
+
+\FloatBarrier
+\section{Генерация псевдослучайных бит}    
+  
+Для реализации Rake-Compress деревьев необходимо уметь генерировать случайные биты для определения, к каким вершинам можно применить операцию Compress.
+Более формально, необходима структура данных, которая на вход принимает общее количество вершин и генератор псевдослучайных чисел, 
+а на выход для каждой пары ($v$, $layer$) выдает случайный бит. 
+При этом, для одинаковых входных данных, биты, которые генерируются, должны быть одинаковы вне зависимости от того, в каком порядке их спрашивают.
+Также желательно чтобы данная структура данных занимала $O(n)$ памяти.
+
+Воспользуемся оптимизацией, о которой говорится в разделе~\ref{sec:memory}. 
+А именно, создадим генераторы псевдослучайных чисел для каждой вершины отдельно и будем отвечать на запросы лениво, сохраняя ответы в саморасширяющемся массиве (отдельном для каждой вершины).
+
+
+\FloatBarrier
+\begin{algorithm}
+\caption{Структура данных для генерации случайных бит}\label{algo:random_gen}
+\begin{algorithmic}[1]
+\State $RandomBitsGenerator(int \ n, Random \ rnd)$
+\For{$i = 0$ to $n$}
+	\State $rand[i] \gets new \ Random(rnd.nextInt())$ 
+	\State $bits[i] \gets \emptyset$
+\EndFor
+
+\Procedure{getBit}{$v, layer$}
+	\While {$bits[v].size() \leq layer$}
+		\State $bits[v].add(rand[v].nextBoolean())$
+	\EndWhile
+	\State \textbf{return} $bits[v].get(layer)$
+\EndProcedure
+
+\end{algorithmic}
+\end{algorithm}
+
+\FloatBarrier
+\section{Хранение клеток таблицы Rake-Compress дерева}      
+
+Рассмотрим более подробно, как необходимо хранить клетки таблицы Rake-Compress дерева. 
+Для вершины необходимо сохранить ее родителя, а также множество детей. 
+Как уже говорилось в разделе~\ref{sec:set_storage} множество детей хранится как сумма их номеров, а также их количество.
+Если вершина является корнем, то в качестве ее родителя будем хранить ее номер.
+Кроме того необходимо хранить изменения, которые произойдут с клеткой при переходе к следующему слою.
+
+\FloatBarrier
+\begin{algorithm}
+\caption{Хранение клеток таблицы Rake-Compress дерева}\label{algo:cell}
+\begin{algorithmic}[1]
+\State \textbf{int} $id, parent, sumChild, cntChild$
+\State \textbf{int} $newParent, diffSumChild, diffCntChild$
+
+\Statex
+\Procedure{applyChanges}{}
+	\State $parent \gets newParent$
+	\State $sumChild \gets sumChild + diffSumChild$
+	\State $cntChild \gets cntChild + diffCntChild$
+	\State $diffSumChild \gets 0$
+	\State $diffCntChilde \gets 0$
+\EndProcedure
+
+\Statex
+\Procedure{addChildToDiff}{$v$}
+	\State $diffSumChild \gets diffSumChild + v$
+	\State $diffCntChilde \gets diffCntChilde + 1$
+\EndProcedure
+
+\Statex
+\Procedure{removeChildFromDiff}{$v$}
+	\State $diffSumChild \gets diffSumChild - v$
+	\State $diffCntChilde \gets diffCntChilde - 1$
+\EndProcedure
+
+\end{algorithmic}
+\end{algorithm}
+
+\FloatBarrier
+\section{Хранение Rake-Compress дерева}   
+
+Во-первых, для каждой вершины необходимо хранить список клеток, которые ей соответствуют. 
+Кроме того, необходимо хранить генератор псевдослучайных бит. 
+Также заведем счетчик количества примененных операций по изменению структуры леса.
+Еще будем хранить массив, в котором для каждой вершины запишем номер последней операции, 
+при обработки которой была изменена хотя бы одна клетка, которая соответствуют вершине.
+Это позволит эффективно узнавать, была ли вершина уже помечена как поменявшаяся или нет.
+
+\FloatBarrier
+\begin{algorithm}
+\caption{Хранение Rake-Compress дерева}\label{algo:rc_tree_storage}
+\begin{algorithmic}[1]
+\State $RakeCompressTree(int \ n, Random \ rnd)$
+\State $RandomBitsGenerator \ rand \gets new \ RandomBitsGenerator(n, rnd)$
+\State $time \gets 0$
+\State $lastUpdateTime \gets \{0 ... 0\}$
+\For{$i = 0$ to $n$}
+	\State $cells[i] \gets new \ List<Cell>$ 
+\EndFor
+
+\end{algorithmic}
+\end{algorithm}
+
+
+\FloatBarrier
+\section{Построение Rake-Compress дерева}   
+
+Рассмотрим, как работает алгоритм построения Rake-Compress дерева. Будем строить таблицу по строкам.
+В каждый момент будем хранить множество вершин, которые еще не были сжаты, и перестраивать следующий слой.
+Также будем делать операции Rake и Compress одновременно. Чтобы определить, нужно ли сжимать вершину, 
+воспользуемся следующим алгоритмом:
+
+\FloatBarrier
+\begin{algorithm}
+\caption{Определение необходимости сжатия вершины}\label{algo:check_rake_compress}
+\begin{algorithmic}[1]
+\Procedure{shouldRemoveVertex}{$Cell \ c, RandomBitsGenerator \ rand, int \ layer$}
+	\If {$c.cntChild = 0$}
+		\State \textbf{return} \algorithmictrue \Comment{После применения операции Rake}
+	\EndIf
+	\If {$c.cntChild > 1$ \algorithmicor $c.parent = c.id$}
+		\State \textbf{return} \algorithmicfalse
+	\EndIf
+	\If {$getCellForVertex(c.sumChild).cntChild = 0$}
+		\State \textbf{return} \algorithmicfalse \Comment{Операция Rake была применена к ребенку}
+	\EndIf
+	\If {$rand.getBit(c.id, layer) = 0$ \algorithmicand $rand.getBit(c.sumChild, layer) = 1$ \algorithmicand $rand.getBit(c.parent, layer) = 1$}
+		\State \textbf{return} \algorithmictrue
+	\EndIf
+	\State \textbf{return} \algorithmicfalse
+\EndProcedure
+
+\end{algorithmic}
+\end{algorithm}
+
+Общий алгоритм построения Rake-Compress дерева выглядит следующим образом:
+
+\FloatBarrier
+\begin{algorithm}
+\caption{Алгоритм построения Rake-Compress дерева}\label{algo:building_rc}
+\begin{algorithmic}[1]
+\State $alive \gets \{0...n - 1\}$
+\State $layer \gets 0$
+\For{$i = 0$ to $n$}
+	\State $cells[i].add(new \ Cell(parent[i]))$ 
+\EndFor
+\While {$alive \neq \emptyset$}
+	\State $nextAlive \gets \emptyset$
+	\For {$v \in alive$} 
+		\State $c \gets getCellForVertex(v)$
+		\If {$shouldRemoveVertex(c, rand, layer)$}
+			\If {$c.cntChild = 1$}
+				\State $getCellForVertex(c.sumChild).newParent \gets c.parent$
+				\State $getCellForVertex(c.parent).addChildToDiff(c.sumChild)$
+			\EndIf
+			\If {$c.parent \neq v$}
+				\State $getCellForVertex(c.parent).removeChildFromDiff(v)$
+			\EndIf
+		\Else
+			\State $nextAlive.add(v)$
+		\EndIf
+	\EndFor
+	\State $alive \gets nextAlive$
+	\For {$v \in alive$}
+		\State $newCell \gets getCellForVertex(v).clone().applyChanges()$ 
+		\State $cells[v].add(newCell)$
+	\EndFor
+	\State $layer \gets layer + 1$
+\EndWhile
+\end{algorithmic}
+\end{algorithm}
+
+\FloatBarrier
+\section{Изменение Rake-Compress дерева при удалении или добавлении одного ребра}   
+
+Рассмотрим, что происходит с таблицей Rake-Compress дерева при изменении одного ребра.
+Основная идея заключается в том, чтобы научится пересчитывать все изменения таблицы за время пропорциональное их количеству.
+Для этого будем эффективно поддерживать множество изменившихся клеток. 
+В момент, когда вершина помечается, как изменившаяся, найдем, как она влияет на таблицу и отменим это влияние. 
+Для начала необходимо найти момент времени, когда вершина сжимается. В этот момент она влияет на не более чем две вершины. 
+Изменим значения $cntChild$, $sumChild$ и $newParent$ нужным образом. 
+Также необходимо добавить эти вершины в множество изменившихся (в момент, когда будет обработан соответствующий слой).
+Поэтому для каждого слоя еще будем хранить список вершин, которые должны быть помечены перед обработкой слоя.
+
+Алгоритм обновления дерева будет выглядеть следующим образом:
+
+
+\FloatBarrier
+\begin{algorithm}
+\caption{Алгоритм перестроения Rake-Compress дерева при удалении или добавлении ребра}\label{algo:rebuilding_rc}
+\begin{algorithmic}[1]
+\State $time \gets time + 1$
+\State $affected \gets \emptyset$
+\State $markAffected(v)$ \Comment {Пусть ребро $(u, v)$ было удалено}
+\State $markAffected(u)$
+\State $cells[u].parent \gets u$
+\State $cells[v].cntChild \gets cells[v].cntChild - 1$
+\State $cells[v].sumChild \gets cells[v].sumChild - u$
+\State $layer \gets 0$
+\While {$affected \neq \emptyset$}
+	\For {$v \in affectedOnLayer[layer]$}
+		\State $markAffected(v)$
+	\EndFor
+	\For {$v \in affected$} 
+		\State $c \gets getCellForVertex(v)$
+		\If {$shouldRemoveVertex(c, rand, layer)$}
+			\State $cells[v].size \gets layer + 1$
+			\If {$c.cntChild = 1$}
+				\State $getCellForVertex(c.sumChild).newParent \gets c.parent$
+				\State $getCellForVertex(c.parent).addChildToDiff(c.sumChild)$
+				\State $markAffected(c.sumChild)$
+			\EndIf
+			\If {$c.parent \neq v$}
+				\State $getCellForVertex(c.parent).removeChildFromDiff(v)$
+				\State $markAffected(c.parent)$
+			\EndIf
+			\State $affected \gets affected \setminus v$
+		\EndIf
+	\EndFor
+	\For {$v \in affected$}
+		\State $newCell \gets getCellForVertex(v).clone().applyChanges()$ 
+		\State $cells[v][layer + 1] \gets newCell$
+	\EndFor
+	\State $layer \gets layer + 1$
+\EndWhile
+
+\Statex
+
+\Procedure{markAffected}{$int \ v$}
+	\If{$lastUpdateTime[v] = time$}
+		\State \textbf{return} \Comment {Вершина уже помечена}
+	\EndIf
+	\State $lastUpdateTime[v] \gets time$
+	\State $affected \gets affected \cup v$
+	\State $removeEffectOfVertex(v)$
+\EndProcedure
+\Procedure{removeEffectOfVertex}{$int \ v$}
+	\State $layer \gets cells[v].size()$
+	\State $c \gets cells[v].get(layer)$
+	\If {$c.parent = v$}
+		\State \textbf{return}
+	\EndIf
+	\State $cells[c.parent].removeChildFromDiff(v)$
+	\If {$c.cntChild = 1$}
+		\State $cells[c.parent].addChildToDiff(c.sumChild)$
+		\State $cells[c.sumChild].newParent \gets v$
+	\EndIf
+\EndProcedure
+
+\end{algorithmic}
+\end{algorithm}
+
+\FloatBarrier
+\section{Сравнение с Link-Cut деревьями}   
+
+Алгоритм был реализован на языке программирования Java, с его исходным кодом можно ознакомиться в \cite{github}.
+Был проведен сравнительный анализ производительности данного алгоритма, а также Link-Cut деревьев. 
+В среднем на тестах, которые были проведены, Rake-Compress деревья оказываются медленнее в 5-10 раз чем Link-Cut.
+
+Из этого можно сделать вывод, что в задачах, в которых применимы как Rake-Compress деревья, так и Link-Cut, следует использовать последние.
+Однако, если в задаче требуется пересчитывать значения функций на поддеревьях, 
+а не на путях, то Link-Cut деревья оказываются не применимы, и в таком случае можно воспользоваться Rake-Compress деревьями.
+Кроме того, если удастся реализовать алгоритм, пересчитывающий Rake-Compress деревья и использующий несколько ядер одновременно, то, возможно, 
+Rake-Compress деревья станут более востребованными.
+
+
+
+

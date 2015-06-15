@@ -1,0 +1,68 @@
+\begin{thebibliography}{1}
+\def\selectlanguageifdefined#1{
+\expandafter\ifx\csname date#1\endcsname\relax
+\else\language\csname l@#1\endcsname\fi}
+\ifx\undefined\url\def\url#1{{\small #1}}\else\fi
+\ifx\undefined\BibUrl\def\BibUrl#1{\url{#1}}\else\fi
+\ifx\undefined\BibAnnote\long\def\BibAnnote#1{(#1)}\else\fi
+\ifx\undefined\BibEmph\def\BibEmph#1{\emph{#1}}\else\fi
+
+\bibitem{tarj86}
+\selectlanguageifdefined{english}
+Goldberg~A.~V., Tarjan~R.~E. A new approach to the maximum flow problem~// 18th
+  STOC.
+\newblock 1986.
+\newblock p.~136.
+
+\bibitem{tarj83}
+\selectlanguageifdefined{english}
+Sleator~D.~D., Tarjan~R.~E. A Data Structure for Dynamic Trees~// 13th STOC.
+\newblock 1983.
+\newblock p.~114.
+
+\bibitem{alst05}
+\selectlanguageifdefined{english}
+Maintaining information in fully dynamic trees with top trees~/ S.~Alstrup,
+  J.~Holm, M.~Thorup et~al.~// ACM TALG 1(2).
+\newblock 2005.
+\newblock P.~243--264.
+
+\bibitem{acar04}
+\selectlanguageifdefined{english}
+Dynamizing Static Algorithms, with Applications to Dynamic Trees and History
+  Independence~/ U.~A.~Acar, G.~E.~Blelloch, R.~Harper et~al.~// 15th SODA.
+\newblock 2004.
+\newblock P.~524--533.
+
+\bibitem{acar05}
+\selectlanguageifdefined{english}
+Acar~U., Blelloch~G.~E., Vittes~J.~L. An experimental analysis of change
+  propagation in dynamic trees~// 7th ALENEX.
+\newblock 2005.
+\newblock P.~41--54.
+
+\bibitem{loca91}
+\selectlanguageifdefined{english}
+Goodrich~M.~T., Tamassia~R. Dynamic Trees and Dynamic Point Location~// 23rd
+  STOC.
+\newblock 1991.
+
+\bibitem{fred85}
+\selectlanguageifdefined{english}
+Frederickson~G. Data structures for on-line update of minimum spanning trees,
+  with applications~// SIAM J. Comp. 14(4).
+\newblock 1985.
+\newblock P.~781--798.
+
+\bibitem{tarj07}
+\selectlanguageifdefined{english}
+Tarjan~R.~E., Werneck~R.~F. Dynamic Trees in Practice~// 6th WEA.
+\newblock 2007.
+\newblock P.~80--93.
+
+\bibitem{github}
+\selectlanguageifdefined{russian}
+Minaiev~B. Implementation of Dynamic Rake-Compress trees.
+\newblock 2015. URL:  https://github.com/BorysMinaiev/DynamicRakeCompressTrees.
+
+\end{thebibliography}
