@@ -1,7 +1,7 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.12.3)  16 JUN 2015 02:20
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.12.3)  16 JUN 2015 17:09
 entering extended mode
 **thesis
-(C:\Users\itmo1\bachelor\paper\bachelor-thesis\paper\thesis.tex
+(C:\Users\itmo1\bachelor\my_git\bachelor\thesis.tex
 LaTeX2e <2011/06/27>
 Babel <v3.8m> and hyphenation patterns for english, afrikaans, ancientgreek, ar
 abic, armenian, assamese, basque, bengali, bokmal, bulgarian, catalan, coptic, 
@@ -224,7 +224,7 @@ Package: array 2008/09/09 v2.4c Tabular extension package (FMi)
 \WF@everypar=\toks32
 Package: wrapfig 2003/01/31  v 3.6
 )
-(C:\Users\itmo1\bachelor\paper\bachelor-thesis\paper\sty/dbl12.sty)
+(C:\Users\itmo1\bachelor\my_git\bachelor\sty/dbl12.sty)
 (C:\Users\itmo1\AppData\Roaming\MiKTeX\2.9\tex\latex\srcltx\srcltx.sty
 Package: srcltx 2006/11/12 v1.6 Source specials for inverse search in DVI files
 
@@ -247,7 +247,7 @@ Package: verbatim 2003/08/22 v1.5q LaTeX2e package for verbatim enhancements
 \verbatim@line=\toks36
 \verbatim@in@stream=\read1
 )
-(C:\Users\itmo1\bachelor\paper\bachelor-thesis\paper\sty/rac.sty
+(C:\Users\itmo1\bachelor\my_git\bachelor\sty/rac.sty
 \thelinewidth=\skip52
 \c@anything=\count105
 \c@map=\count106
@@ -487,7 +487,7 @@ Package: easytable 2001/05/31v1.1
 \@tab@size@dash=\dimen229
 )
 \c@theorem=\count134
- (C:\Users\itmo1\bachelor\paper\bachelor-thesis\paper\thesis.aux)
+ (C:\Users\itmo1\bachelor\my_git\bachelor\thesis.aux)
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 137.
 LaTeX Font Info:    ... okay on input line 137.
 LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 137.
@@ -539,8 +539,8 @@ LaTeX Font Info:    Try loading font information for T2A+cmss on input line 187
 (C:\Users\itmo1\AppData\Roaming\MiKTeX\2.9\tex\latex\cyrillic\t2acmss.fd
 File: t2acmss.fd 2001/08/11 v1.0a Computer Modern Cyrillic font definitions
 )
-(C:\Users\itmo1\bachelor\paper\bachelor-thesis\paper\thesis.toc<<ot1.cmap>><<om
-l.cmap>><<oms.cmap>><<omx.cmap>>
+(C:\Users\itmo1\bachelor\my_git\bachelor\thesis.toc<<ot1.cmap>><<oml.cmap>><<om
+s.cmap>><<omx.cmap>>
 LaTeX Font Info:    Try loading font information for U+msa on input line 2.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
@@ -557,7 +557,7 @@ Package srcltx Info: Expanded filename `chapters/intro.tex' to `chapters/intro.
 tex' on input line 225.
 
 :<+ chapters/intro.tex
-(C:\Users\itmo1\bachelor\paper\bachelor-thesis\paper\chapters/intro.tex
+(C:\Users\itmo1\bachelor\my_git\bachelor\chapters/intro.tex
 Underfull \hbox (badness 1082) in paragraph at lines 18--19
 [][]\T2A/cmr/m/n/14.4 –еализаци€ Rake-Compress де-ре-вьев, ко-то-ра€ бы-ла пред
 -ло-же-на
@@ -576,31 +576,16 @@ LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <14.4> not available
 Package srcltx Info: Expanded filename `chapters/chapter1.tex' to `chapters/cha
 pter1.tex' on input line 226.
 :<+ chapters/chapter1.tex
-(C:\Users\itmo1\bachelor\paper\bachelor-thesis\paper\chapters/chapter1.tex
-[7]
+(C:\Users\itmo1\bachelor\my_git\bachelor\chapters/chapter1.tex [7]
 \IeC {\CYRG }\IeC {\cyrl }\IeC {\cyra }\IeC {\cyrv }\IeC {\cyra } 1.
 [8
 
-] [9]
-Underfull \hbox (badness 2418) in paragraph at lines 69--71
-[][]\T2A/cmr/m/n/14.4 »спользование ди-на-ми-че-ских де-ре-вьев в ал-го-рит-ме 
-про-тал-ки-
- []
-
-
-Underfull \hbox (badness 1292) in paragraph at lines 69--71
-\T2A/cmr/m/n/14.4 ва-ни€ пред-по-то-ка умень-ша-ет вре-м€ его ра-бо-ты с $[]\OM
-L/cmm/m/it/14.4 O\OT1/cmr/m/n/14.4 (\OML/cmm/m/it/14.4 V[]E\OT1/cmr/m/n/14.4 )$
- \T2A/cmr/m/n/14.4 до
- []
-
-[10] [11])
+] [9] [10] [11])
 :<-
 Package srcltx Info: Expanded filename `chapters/chapter2.tex' to `chapters/cha
 pter2.tex' on input line 227.
 :<+ chapters/chapter2.tex
-(C:\Users\itmo1\bachelor\paper\bachelor-thesis\paper\chapters/chapter2.tex
-[12]
+(C:\Users\itmo1\bachelor\my_git\bachelor\chapters/chapter2.tex [12]
 \IeC {\CYRG }\IeC {\cyrl }\IeC {\cyra }\IeC {\cyrv }\IeC {\cyra } 2.
 <pics/rake.png, id=48, 1055.945pt x 475.7775pt>
 File: pics/rake.png Graphic file (type png)
@@ -617,28 +602,25 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 File: pics/compress.png Graphic file (type png)
 
 <use pics/compress.png>
-Package pdftex.def Info: pics/compress.png used on input line 36.
+Package pdftex.def Info: pics/compress.png used on input line 42.
 (pdftex.def)             Requested size: 375.57779pt x 115.70612pt.
- [14 <C:/Users/itmo1/bachelor/paper/bachelor-thesis/paper/pics/rake.png> <C:/Us
-ers/itmo1/bachelor/paper/bachelor-thesis/paper/pics/compress.png>] [15] <pics/e
-xample.png, id=68, 961.5925pt x 719.68875pt>
+ [14 <C:/Users/itmo1/bachelor/my_git/bachelor/pics/rake.png> <C:/Users/itmo1/ba
+chelor/my_git/bachelor/pics/compress.png>] [15]
+<pics/example.png, id=68, 961.5925pt x 719.68875pt>
 File: pics/example.png Graphic file (type png)
-
-<use pics/example.png>
-Package pdftex.def Info: pics/example.png used on input line 105.
+ <use pics/example.png>
+Package pdftex.def Info: pics/example.png used on input line 111.
 (pdftex.def)             Requested size: 375.57779pt x 281.09479pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[16] [17 <C:/Users/itmo1/bachelor/paper/bachelor-thesis/paper/pics/example.png>
-] [18])
+[16] [17 <C:/Users/itmo1/bachelor/my_git/bachelor/pics/example.png>] [18])
 :<-
 Package srcltx Info: Expanded filename `chapters/chapter3.tex' to `chapters/cha
 pter3.tex' on input line 228.
 :<+ chapters/chapter3.tex
-(C:\Users\itmo1\bachelor\paper\bachelor-thesis\paper\chapters/chapter3.tex
-[19]
+(C:\Users\itmo1\bachelor\my_git\bachelor\chapters/chapter3.tex [19]
 \IeC {\CYRG }\IeC {\cyrl }\IeC {\cyra }\IeC {\cyrv }\IeC {\cyra } 3.
 
 Underfull \hbox (badness 10000) in paragraph at lines 2--3
@@ -652,8 +634,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 2--3
 Package srcltx Info: Expanded filename `chapters/chapter4.tex' to `chapters/cha
 pter4.tex' on input line 229.
 :<+ chapters/chapter4.tex
-(C:\Users\itmo1\bachelor\paper\bachelor-thesis\paper\chapters/chapter4.tex
-[26]
+(C:\Users\itmo1\bachelor\my_git\bachelor\chapters/chapter4.tex [26]
 \IeC {\CYRG }\IeC {\cyrl }\IeC {\cyra }\IeC {\cyrv }\IeC {\cyra } 4.
 [27
 
@@ -670,11 +651,10 @@ Underfull \hbox (badness 10000) in paragraph at lines 126--127
 Package srcltx Info: Expanded filename `chapters/outro.tex' to `chapters/outro.
 tex' on input line 230.
 :<+ chapters/outro.tex
-(C:\Users\itmo1\bachelor\paper\bachelor-thesis\paper\chapters/outro.tex
-[32])
+(C:\Users\itmo1\bachelor\my_git\bachelor\chapters/outro.tex [32])
 :<-
 :<+ thesis.bbl
-(C:\Users\itmo1\bachelor\paper\bachelor-thesis\paper\thesis.bbl [33]
+(C:\Users\itmo1\bachelor\my_git\bachelor\thesis.bbl [33]
 Underfull \hbox (badness 10000) in paragraph at lines 65--67
 [][]\T2A/cmr/m/n/10 Minaiev B. Implementation of Dynamic Rake-Compress trees.  
 2015. URL:
@@ -688,38 +668,38 @@ See the caption package documentation for explanation.
 
 [34
 
-] (C:\Users\itmo1\bachelor\paper\bachelor-thesis\paper\thesis.aux) ) 
+] (C:\Users\itmo1\bachelor\my_git\bachelor\thesis.aux) ) 
 Here is how much of TeX's memory you used:
  7997 strings out of 493921
- 112665 string characters out of 3144876
+ 112317 string characters out of 3144876
  181160 words of memory out of 3000000
  11074 multiletter control sequences out of 15000+200000
  19142 words of font info for 43 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
  36i,5n,39p,855b,629s stack positions out of 5000i,500n,10000p,200000b,50000s
- <C:\Users\
-itmo1\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\lh\lh-t2a\dpi600\lacc1000.pk> <C
-:\Users\itmo1\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\lh\lh-t2a\dpi600\larm080
-0.pk> <C:\Users\itmo1\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\lh\lh-t2a\dpi600
-\labx1000.pk> <C:\Users\itmo1\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\lh\lh-t2
-a\dpi600\lati1440.pk> <C:\Users\itmo1\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\
-lh\lh-t2a\dpi600\labi1440.pk> <C:\Users\itmo1\AppData\Local\MiKTeX\2.9\fonts\pk
-\ljfour\lh\lh-t2a\dpi600\laxc1728.pk> <C:\Users\itmo1\AppData\Local\MiKTeX\2.9\
-fonts\pk\ljfour\lh\lh-t2a\dpi600\labx1440.pk> <C:\Users\itmo1\AppData\Local\MiK
-TeX\2.9\fonts\pk\ljfour\lh\lh-t2a\dpi600\lasx2488.pk> <C:\Users\itmo1\AppData\L
-ocal\MiKTeX\2.9\fonts\pk\ljfour\lh\lh-t2a\dpi600\labx1728.pk> <C:\Users\itmo1\A
-ppData\Local\MiKTeX\2.9\fonts\pk\ljfour\lh\lh-t2a\dpi600\larm1440.pk> <C:\Users
-\itmo1\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\lh\lh-t2a\dpi600\larm1000.pk><C
-:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/
-Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Pr
-ogram Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Prog
-ram Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program
- Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Fi
-les (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Program Files 
-(x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on thesis.pdf (32 pages, 443070 bytes).
+ <C:\Users\itmo1\AppDat
+a\Local\MiKTeX\2.9\fonts\pk\ljfour\lh\lh-t2a\dpi600\lacc1000.pk> <C:\Users\itmo
+1\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\lh\lh-t2a\dpi600\larm0800.pk> <C:\Us
+ers\itmo1\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\lh\lh-t2a\dpi600\labx1000.pk
+> <C:\Users\itmo1\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\lh\lh-t2a\dpi600\lat
+i1440.pk> <C:\Users\itmo1\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\lh\lh-t2a\dp
+i600\labi1440.pk> <C:\Users\itmo1\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\lh\l
+h-t2a\dpi600\laxc1728.pk> <C:\Users\itmo1\AppData\Local\MiKTeX\2.9\fonts\pk\ljf
+our\lh\lh-t2a\dpi600\labx1440.pk> <C:\Users\itmo1\AppData\Local\MiKTeX\2.9\font
+s\pk\ljfour\lh\lh-t2a\dpi600\lasx2488.pk> <C:\Users\itmo1\AppData\Local\MiKTeX\
+2.9\fonts\pk\ljfour\lh\lh-t2a\dpi600\labx1728.pk> <C:\Users\itmo1\AppData\Local
+\MiKTeX\2.9\fonts\pk\ljfour\lh\lh-t2a\dpi600\larm1440.pk> <C:\Users\itmo1\AppDa
+ta\Local\MiKTeX\2.9\fonts\pk\ljfour\lh\lh-t2a\dpi600\larm1000.pk><C:/Program Fi
+les (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program File
+s (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files 
+(x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Program Files (x
+86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files (x86)
+/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files (x86)/Mi
+KTeX 2.9/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Program Files (x86)/MiKTeX
+ 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
+Output written on thesis.pdf (32 pages, 443586 bytes).
 PDF statistics:
- 742 PDF objects out of 1000 (max. 8388607)
+ 744 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  36 words of extra memory for PDF output out of 10000 (max. 10000000)
 
